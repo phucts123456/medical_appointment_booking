@@ -1,6 +1,8 @@
+using medical_appointment_booking.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,6 +33,8 @@ namespace medical_appointment_booking
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "medical_appointment_booking", Version = "v1" });
             });
+            services.AddDbContext<TodoContext>(opt =>
+                                               opt.UseInMemoryDatabase("TodoList"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

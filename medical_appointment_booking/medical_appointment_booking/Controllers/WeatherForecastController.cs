@@ -17,7 +17,7 @@ namespace medical_appointment_booking.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-
+        List<WeatherForecast> ListWeather = new List<WeatherForecast>();
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
@@ -26,14 +26,13 @@ namespace medical_appointment_booking.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+           return ListWeather;
         }
+        [HttpPost]
+        public void Post(WeatherForecast weatherForecast)
+        {
+            ListWeather.Add(weatherForecast);
+        }
+
     }
 }
