@@ -33,8 +33,8 @@ namespace medical_appointment_booking
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "medical_appointment_booking", Version = "v1" });
             });
-            services.AddDbContext<TodoContext>(opt =>
-                                               opt.UseInMemoryDatabase("TodoList"));
+            services.AddDbContext<medicalappointmentbookingContext>(options =>
+           options.UseSqlServer(Configuration.GetConnectionString("medicalAppointmentBookingDatabase")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
