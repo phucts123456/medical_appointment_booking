@@ -14,7 +14,7 @@ namespace medical_appointment_booking.Models
         public bool? IsApproved { get; set; }
         public string Note { get; set; }
         public int? AccountId { get; set; }
-
+        public string Result { get; set; }
         public virtual Account Account { get; set; }
         public virtual Doctor Doctor { get; set; }
     }

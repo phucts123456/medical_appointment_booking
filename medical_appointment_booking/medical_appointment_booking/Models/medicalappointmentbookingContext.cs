@@ -63,7 +63,7 @@ namespace medical_appointment_booking.Models
                 entity.Property(e => e.DoctorId).HasColumnName("DoctorID");
 
                 entity.Property(e => e.IsApproved).HasColumnName("isApproved");
-
+                entity.Property(e => e.Result).HasColumnName("Result");
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.Appointments)
                     .HasForeignKey(d => d.AccountId)
