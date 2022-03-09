@@ -7445,19 +7445,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DELL\\.nuget\\packages\\": {}
+    "C:\\Users\\ADMIN\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\KySpring2022\\PRM\\GroupProject\\medical_appointment_booking\\medical_appointment_booking\\medical_appointment_booking\\medical_appointment_booking.csproj",
+      "projectUniqueName": "D:\\FPT\\Spring_2022\\phucts123456\\medical_appointment_booking\\medical_appointment_booking\\medical_appointment_booking\\medical_appointment_booking.csproj",
       "projectName": "medical_appointment_booking",
-      "projectPath": "E:\\KySpring2022\\PRM\\GroupProject\\medical_appointment_booking\\medical_appointment_booking\\medical_appointment_booking\\medical_appointment_booking.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "E:\\KySpring2022\\PRM\\GroupProject\\medical_appointment_booking\\medical_appointment_booking\\medical_appointment_booking\\obj\\",
+      "projectPath": "D:\\FPT\\Spring_2022\\phucts123456\\medical_appointment_booking\\medical_appointment_booking\\medical_appointment_booking\\medical_appointment_booking.csproj",
+      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+      "outputPath": "D:\\FPT\\Spring_2022\\phucts123456\\medical_appointment_booking\\medical_appointment_booking\\medical_appointment_booking\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7532,7 +7532,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
