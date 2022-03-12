@@ -44,14 +44,15 @@ namespace medical_appointment_booking.Controllers
         // PUT: api/Appointments/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<ActionResult<Appointment>> PutAppointment(int id, Appointment appointment)
+        public async Task<ActionResult> PutAppointment(int id, Appointment appointment)
         {
             if (id != appointment.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(appointment).State = EntityState.Modified;
+            Appointment curAppointment = await _context.Appointments.FindAsync(id);
+            curAppointment.Result = appointment.Result;
+            _context.Entry(curAppointment).State = EntityState.Modified;
 
             try
             {
@@ -69,7 +70,7 @@ namespace medical_appointment_booking.Controllers
                 }
             }
 
-            return appointment;
+            return NoContent();
         }
 
         // POST: api/Appointments
