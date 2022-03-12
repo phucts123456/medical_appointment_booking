@@ -44,14 +44,19 @@ namespace medical_appointment_booking.Controllers
         // PUT: api/Doctors/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDoctor(int id, Doctor doctor)
+        public async Task<ActionResult<Doctor>> PutDoctor(int id, Doctor doctor)
         {
             if (id != doctor.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(doctor).State = EntityState.Modified;
+            Doctor curDoctor = await _context.Doctors.FindAsync(id);
+            curDoctor.SpecialistId = doctor.SpecialistId;
+            curDoctor.FullName = doctor.FullName;
+            curDoctor.AcademicRank = doctor.AcademicRank;
+            curDoctor.isMale = doctor.isMale;
+            _context.Entry(curDoctor).State = EntityState.Modified;
 
             try
             {
@@ -69,7 +74,7 @@ namespace medical_appointment_booking.Controllers
                 }
             }
 
-            return NoContent();
+            return curDoctor;
         }
 
         // POST: api/Doctors
@@ -116,6 +121,65 @@ namespace medical_appointment_booking.Controllers
         private bool DoctorExists(int id)
         {
             return _context.Doctors.Any(e => e.Id == id);
+        }
+
+        [HttpPost]
+        [Route("Admin")]
+        public async Task<ActionResult<Doctor>> AddDoctorWithAccount(DoctorWithAccount doctorInput)
+        {
+            List<Account> lst = await _context.Accounts.ToListAsync();
+            int AccountId = lst.Count();
+            Account account = new Account();
+            account.Id = AccountId + 1;
+            account.UserName = doctorInput.UserName;
+            account.Password = doctorInput.Password;
+            account.Role = 2;
+            _context.Accounts.Add(account);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+
+            catch (DbUpdateException)
+            {
+                if (DoctorExists(account.Id))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            List<Doctor> lstDoc = await _context.Doctors.ToListAsync();
+            int DoctorId = lstDoc.Count();
+            Doctor doctor = new Doctor();
+            doctor.Id = DoctorId + 1;
+            doctor.SpecialistId = doctorInput.SpecialistId;
+            doctor.FullName = doctorInput.FullName;
+            doctor.AcademicRank = doctorInput.AcademicRank;
+            doctor.AccountId = account.Id;
+            doctor.isMale = doctorInput.isMale;
+            _context.Doctors.Add(doctor);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+
+            catch (DbUpdateException)
+            {
+                if (DoctorExists(doctor.Id))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtAction("GetDoctor", new { id = doctor.Id }, doctor);
         }
     }
 }

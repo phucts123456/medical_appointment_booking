@@ -74,7 +74,7 @@ namespace medical_appointment_booking.Controllers
         }
 
         [HttpPut("Admin/{id}")]
-        public async Task<ActionResult> PutAppointmentAdmin(int id, Appointment appointment)
+        public async Task<ActionResult<Appointment>> PutAppointmentAdmin(int id, Appointment appointment)
         {
             if (id != appointment.Id)
             {
@@ -101,7 +101,7 @@ namespace medical_appointment_booking.Controllers
                 }
             }
 
-            return Content("Update success");
+            return curAppointment;
         }
 
         // POST: api/Appointments
