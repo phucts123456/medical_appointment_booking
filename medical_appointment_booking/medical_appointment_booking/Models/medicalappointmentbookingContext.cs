@@ -88,6 +88,8 @@ namespace medical_appointment_booking.Models
                 entity.Property(e => e.AccountId).HasColumnName("AccountID");
 
                 entity.Property(e => e.FullName).HasMaxLength(50);
+                entity.Property(e => e.isMale).HasColumnName("isMale");
+
 
                 entity.Property(e => e.SpecialistId).HasColumnName("SpecialistID");
 
