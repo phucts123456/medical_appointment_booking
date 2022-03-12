@@ -73,6 +73,37 @@ namespace medical_appointment_booking.Controllers
             return NoContent();
         }
 
+        [HttpPut("Admin/{id}")]
+        public async Task<ActionResult> PutAppointmentAdmin(int id, Appointment appointment)
+        {
+            if (id != appointment.Id)
+            {
+                return BadRequest();
+            }
+            Appointment curAppointment = await _context.Appointments.FindAsync(id);
+            curAppointment.IsApproved = appointment.IsApproved;
+            curAppointment.Note = appointment.Note;
+            _context.Entry(curAppointment).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AppointmentExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Content("Update success");
+        }
+
         // POST: api/Appointments
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
