@@ -31,7 +31,7 @@ namespace medical_appointment_booking.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Appointment>> GetAppointment(int id)
         {
-            var appointment = await _context.Appointments.FindAsync(id);
+            var appointment = await _context.Appointments.Include( a => a.Doctor).Include(a => a.Account).FirstOrDefaultAsync();
 
             if (appointment == null)
             {
