@@ -44,7 +44,7 @@ namespace medical_appointment_booking.Models
                     .HasColumnName("ID");
 
                 entity.Property(e => e.Password).HasMaxLength(50);
-
+                entity.Property(e => e.DotorID).HasColumnName("DoctorID");
                 entity.Property(e => e.UserName).HasMaxLength(50);
             });
 

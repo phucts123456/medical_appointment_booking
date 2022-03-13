@@ -17,7 +17,7 @@ namespace medical_appointment_booking.Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public int? Role { get; set; }
-
+        public int? DotorID { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
         public virtual ICollection<Doctor> Doctors { get; set; }
     }
