@@ -79,6 +79,7 @@ namespace medical_appointment_booking.Controllers
         {
            int id = _context.Accounts.Count();
             account.Id = id+1;
+            account.Role = 3;
             _context.Accounts.Add(account);
             try
             {
