@@ -24,7 +24,7 @@ namespace medical_appointment_booking.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors()
         {
-            return await _context.Doctors.ToListAsync();
+            return await _context.Doctors.Include(d => d.Specialist).ToListAsync();
         }
 
         // GET: api/Doctors/5
@@ -134,6 +134,7 @@ namespace medical_appointment_booking.Controllers
             account.UserName = doctorInput.UserName;
             account.Password = doctorInput.Password;
             account.Role = 2;
+            
             _context.Accounts.Add(account);
             try
             {
@@ -178,7 +179,10 @@ namespace medical_appointment_booking.Controllers
                     throw;
                 }
             }
-
+            Account updateAccount = await _context.Accounts.FindAsync(account.Id);            
+            updateAccount.DotorID = doctor.Id;
+            _context.Accounts.Update(updateAccount);
+            await _context.SaveChangesAsync();
             return CreatedAtAction("GetDoctor", new { id = doctor.Id }, doctor);
         }
     }
