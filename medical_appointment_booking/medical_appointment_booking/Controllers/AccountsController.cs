@@ -77,6 +77,8 @@ namespace medical_appointment_booking.Controllers
         [HttpPost]
         public async Task<ActionResult<Account>> PostAccount(Account account)
         {
+           int id = _context.Accounts.Count();
+            account.Id = id+1;
             _context.Accounts.Add(account);
             try
             {
