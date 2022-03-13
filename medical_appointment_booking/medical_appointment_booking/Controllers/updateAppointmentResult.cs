@@ -24,7 +24,8 @@ namespace medical_appointment_booking.Controllers
         {   
             if(filterDate == null)
             {
-                return await _context.Appointments.Where(a => a.IsApproved == true && a.DoctorId == docID).ToListAsync();
+                return await _context.Appointments.Where(a => a.IsApproved == true && a.DoctorId == docID
+                && a.AppointmentDate.Equals(DateTime.Now)).ToListAsync();
 
             }
             return await _context.Appointments.Where(a => a.IsApproved == true && a.DoctorId == docID && filterDate.Equals(a.AppointmentDate)).ToListAsync();

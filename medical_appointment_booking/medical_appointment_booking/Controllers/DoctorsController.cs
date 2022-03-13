@@ -180,7 +180,7 @@ namespace medical_appointment_booking.Controllers
                 }
             }
             Account updateAccount = await _context.Accounts.FindAsync(account.Id);            
-            updateAccount.DotorID = doctor.Id;
+            updateAccount.DoctorID = doctor.Id;
             _context.Accounts.Update(updateAccount);
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetDoctor", new { id = doctor.Id }, doctor);
