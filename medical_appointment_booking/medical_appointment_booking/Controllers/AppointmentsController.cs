@@ -109,6 +109,10 @@ namespace medical_appointment_booking.Controllers
         [HttpPost]
         public async Task<ActionResult<Appointment>> PostAppointment(Appointment appointment)
         {
+            List<Appointment> list = await _context.Appointments.ToListAsync();
+            int id = list.Count();
+
+            appointment.Id = id;
             _context.Appointments.Add(appointment);
             try
             {
