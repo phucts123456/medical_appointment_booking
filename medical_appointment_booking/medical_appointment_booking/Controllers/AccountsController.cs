@@ -40,7 +40,7 @@ namespace medical_appointment_booking.Controllers
 
             return account;
         }
-        [Route("api/loginWithGoogleID")]
+        [Route("loginWithGoogleID")]
         [HttpGet]
         public async Task<ActionResult<Account>> GetAccountByGGID(String ID)
         {
@@ -90,7 +90,13 @@ namespace medical_appointment_booking.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Account>> PostAccount(Account account)
-        {
+        {   if(account.googleAccountID != null)
+            {   
+                if(await _context.Accounts.FirstOrDefaultAsync(a => a.googleAccountID == account.googleAccountID)!= null)
+                {
+                    return BadRequest("Account này đã tồn tại");
+                }
+            }
            int id = _context.Accounts.Count();
             account.Id = id+1;
             account.Role = 3;
