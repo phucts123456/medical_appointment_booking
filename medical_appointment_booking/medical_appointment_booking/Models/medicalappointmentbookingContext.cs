@@ -42,6 +42,7 @@ namespace medical_appointment_booking.Models
                 entity.Property(e => e.Id)
                     .ValueGeneratedNever()
                     .HasColumnName("ID");
+                entity.Property(e => e.googleAccountID).HasColumnName("googleUid");
 
                 entity.Property(e => e.Password).HasMaxLength(50);
                 entity.Property(e => e.DoctorID).HasColumnName("DoctorID");

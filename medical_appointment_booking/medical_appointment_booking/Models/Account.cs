@@ -18,6 +18,7 @@ namespace medical_appointment_booking.Models
         public string Password { get; set; }
         public int? Role { get; set; }
         public int? DoctorID { get; set; }
+        public string googleAccountID { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
         public virtual ICollection<Doctor> Doctors { get; set; }
     }

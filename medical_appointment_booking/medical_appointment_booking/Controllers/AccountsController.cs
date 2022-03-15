@@ -40,6 +40,20 @@ namespace medical_appointment_booking.Controllers
 
             return account;
         }
+        [Route("api/loginWithGoogleID")]
+        [HttpGet]
+        public async Task<ActionResult<Account>> GetAccountByGGID(String ID)
+        {
+            var account = await _context.Accounts.FirstOrDefaultAsync(a => a.googleAccountID == ID);
+
+            if (account == null)
+            {
+                return NotFound();
+            }
+
+            return account;
+        }
+    
 
         // PUT: api/Accounts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
