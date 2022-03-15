@@ -112,7 +112,7 @@ namespace medical_appointment_booking.Controllers
             List<Appointment> list = await _context.Appointments.ToListAsync();
             int id = list.Count();
 
-            appointment.Id = id;
+            appointment.Id = id+1;
             _context.Appointments.Add(appointment);
             try
             {
