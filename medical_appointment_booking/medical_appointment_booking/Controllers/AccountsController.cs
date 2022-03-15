@@ -121,11 +121,11 @@ namespace medical_appointment_booking.Controllers
             return _context.Accounts.Any(e => e.Id == id);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("SignIn")]
-        public async Task<ActionResult<Account>> SignIn(string username, string password)
+        public async Task<ActionResult<Account>> SignIn(Account accountFrom)
         {
-            var account = await _context.Accounts.Where(a => a.UserName.Equals(username) && a.Password.Equals(password)).FirstOrDefaultAsync();
+            var account = await _context.Accounts.Where(a => a.UserName.Equals(accountFrom.UserName) && a.Password.Equals(accountFrom.Password)).FirstOrDefaultAsync();
 
             if (account == null)
             {
