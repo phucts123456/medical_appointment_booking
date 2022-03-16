@@ -90,7 +90,7 @@ namespace medical_appointment_booking.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Account>> PostAccount(Account account)
-        {   if(account.googleAccountID != null)
+        {   if(account.googleAccountID != null && account.googleAccountID !="")
             {   
                 if(await _context.Accounts.FirstOrDefaultAsync(a => a.googleAccountID == account.googleAccountID)!= null)
                 {
